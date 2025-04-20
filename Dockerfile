@@ -22,10 +22,7 @@ ENV UV_LINK_MODE=copy
 
 # Install dependencies
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-RUN target=/root/.cache/uv \
-    source=uv.lock,target=uv.lock \
-    source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-project
+RUN uv sync --frozen --no-install-project
 
 ENV PYTHONPATH=/app
 
@@ -45,4 +42,7 @@ COPY ./hirawilliott /app/hirawilliott
 RUN target=/root/.cache/uv \
     uv sync
 
-CMD ["fastapi", "run", "--workers", "4", "hirawilliott/main.py"]
+
+EXPOSE 8080
+
+CMD ["fastapi", "run", "--workers", "4", "--port", "8080" "hirawilliott/main.py"]
