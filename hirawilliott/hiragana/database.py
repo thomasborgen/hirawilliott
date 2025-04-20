@@ -39,6 +39,17 @@ db = {
             character="こ", romaji="koumori", word="こうもり", image="koumori.png"
         ),
     ],
+    # さ行
+    "さ": [Hiragana(character="さ", romaji="sai", word="さい", image="sai.png")],
+    "し": [
+        Hiragana(
+            character="し", romaji="shimauma", word="しまうま", image="shimauma.png"
+        )
+    ],
+    "す": [Hiragana(character="す", romaji="suika", word="すいか", image="suika.png")],
+    "せ": [
+        Hiragana(character="せ", romaji="seiuchi", word="せいうち", image="seiuchi.png")
+    ],
     "そ": [Hiragana(character="そ", romaji="sou", word="そう", image="sou.png")],
     "も": [
         Hiragana(character="も", romaji="mogura", word="もぐら", image="mogura.png")
@@ -55,7 +66,6 @@ db = {
             image="ressaapanda.png",
         )
     ],
-    "さ": [Hiragana(character="さ", romaji="sai", word="さい", image="sai.png")],
     "は": [
         Hiragana(
             character="は", romaji="hamsutaa", word="はむすたー", image="hamusutaa.png"

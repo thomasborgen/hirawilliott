@@ -16,35 +16,13 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
 ENV UV_COMPILE_BYTECODE=1
 
-# uv Cache
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#caching
-ENV UV_LINK_MODE=copy
 
 COPY ./pyproject.toml ./uv.lock /app/
-
-# Install dependencies
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-RUN uv sync --frozen --no-install-project
 
 ENV PYTHONPATH=/app
 
-# COPY ./scripts /app/scripts
-# Copy alembic migrations and files
-# COPY alembic.ini /app/
-# COPY ./alembic /app/alembic
-
-COPY ./pyproject.toml ./uv.lock /app/
-
-# move server into the app folder
-# COPY ./app /app/app
 COPY ./hirawilliott /app/hirawilliott
 
-# Sync the project
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-# RUN target=/root/.cache/uv \
-#     uv sync
-
-
-EXPOSE 8080
+RUN uv sync
 
 CMD ["uv", "run", "fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
