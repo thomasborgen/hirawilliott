@@ -10,6 +10,7 @@ COPY . /app
 WORKDIR /app
 RUN uv sync --frozen --no-cache
 
+EXPOSE 8080
 # Run the application.
 CMD ["/app/.venv/bin/fastapi", "run", "hirawilliott/main.py", "--port", "8080", "--host", "0.0.0.0"]
 
