@@ -15,7 +15,7 @@ def _choice_renderer(hiragana: Hiragana, correct: bool = False) -> Element:
 
     if not correct:
         audio = Audio(
-            src=f'/hiragana/speak?text={hiragana.character}<break strength="strong"/>{hiragana.word}',
+            src=f'/speak?text={hiragana.character}<break strength="strong"/>{hiragana.word}',
             class_="hidden",
             id=f"audio_{hiragana.romaji}",
         )
@@ -74,7 +74,7 @@ def render_game_partial(
             class_="flex flex-row gap-2 px-2 justify-center",
         ),
         Audio(
-            src=f"/hiragana/speak?text={speech}",
+            src=f"/speak?text={speech}",
             class_="hidden",
             autoplay="true",
         ),
