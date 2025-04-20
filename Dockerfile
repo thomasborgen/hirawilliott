@@ -41,10 +41,10 @@ COPY ./hirawilliott /app/hirawilliott
 
 # Sync the project
 # Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-RUN target=/root/.cache/uv \
-    uv sync
+# RUN target=/root/.cache/uv \
+#     uv sync
 
 
 EXPOSE 8080
 
-CMD ["fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
+CMD ["uv", "run", "fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
