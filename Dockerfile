@@ -47,4 +47,4 @@ RUN target=/root/.cache/uv \
 
 EXPOSE 8080
 
-CMD ["fastapi", "run", "--workers", "4", "--port", "8080" "hirawilliott/main.py"]
+CMD ["fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
