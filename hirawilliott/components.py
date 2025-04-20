@@ -52,6 +52,7 @@ def base() -> Element:
                 ),
                 Script(src="https://cdn.tailwindcss.com"),
                 Script(src="/static/javascript/htmx.min.js"),
+                Script(src="/static/javascript/audio_event_attacher.js"),
                 Script(src="https://unpkg.com/hyperscript.org@0.9.12"),
                 Title("Hirawilliott - home"),
                 slot="head",

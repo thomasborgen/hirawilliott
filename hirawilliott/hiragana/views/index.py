@@ -1,3 +1,4 @@
+from typing import Annotated
 from fastapi import Depends
 from hypermedia import (
     Div,
@@ -57,7 +58,7 @@ def render_index_partial() -> Element:
 
 
 def render_index(
-    partial: Element = Depends(render_index_partial),
+    partial: Annotated[Element, Depends(render_index_partial)],
 ) -> Element:
     """Render the full page, with index form."""
     return (

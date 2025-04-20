@@ -5,6 +5,7 @@ from hypermedia import Element
 from hypermedia.fastapi import full, htmx
 
 from hirawilliott.hiragana.router import router as hiragana_router
+from hirawilliott.speak.router import router as speak_router
 
 from hirawilliott.views.index import render_index, render_index_partial
 
@@ -41,6 +42,12 @@ async def index(
 
 
 app.include_router(hiragana_router)
+app.include_router(speak_router)
 
 
 app.mount("/static", StaticFiles(directory="hirawilliott/static/"), name="static")
+app.mount(
+    "/hiragana/static",
+    StaticFiles(directory="hirawilliott/hiragana/static/"),
+    name="static",
+)
