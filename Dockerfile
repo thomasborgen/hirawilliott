@@ -1,28 +1,43 @@
-FROM python:3.12
+FROM python:3.12-slim
 
-ENV PYTHONUNBUFFERED=1
+# Install uv.
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-WORKDIR /app/
+# Copy the application into the container.
+COPY . /app
 
-# Install uv
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
-COPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv
+# Install the application dependencies.
+WORKDIR /app
+RUN uv sync --frozen --no-cache
 
-# Place executables in the environment at the front of the path
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
-ENV PATH="/app/.venv/bin:$PATH"
+# Run the application.
+CMD ["/app/.venv/bin/fastapi", "run", "hirawilliott/main.py", "--port", "8080", "--host", "0.0.0.0"]
 
-# Compile bytecode
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
-ENV UV_COMPILE_BYTECODE=1
+# FROM python:3.12
+
+# ENV PYTHONUNBUFFERED=1
+
+# WORKDIR /app/
+
+# # Install uv
+# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
+# COPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv
+
+# # Place executables in the environment at the front of the path
+# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
+# ENV PATH="/app/.venv/bin:$PATH"
+
+# # Compile bytecode
+# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
+# ENV UV_COMPILE_BYTECODE=1
 
 
-COPY ./pyproject.toml ./uv.lock /app/
+# COPY ./pyproject.toml ./uv.lock /app/
 
-ENV PYTHONPATH=/app
+# ENV PYTHONPATH=/app
 
-COPY ./hirawilliott /app/hirawilliott
+# COPY ./hirawilliott /app/hirawilliott
 
-RUN uv sync
+# RUN uv sync
 
-CMD ["uv", "run", "fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
+# CMD ["uv", "run", "fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
