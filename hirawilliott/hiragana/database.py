@@ -50,7 +50,10 @@ db = {
     "せ": [
         Hiragana(character="せ", romaji="seiuchi", word="せいうち", image="seiuchi.png")
     ],
-    "そ": [Hiragana(character="そ", romaji="sou", word="そう", image="sou.png")],
+    "そ": [
+        Hiragana(character="そ", romaji="soujiki", word="そうじき", image="soujiki.png")
+    ],
+    "ぞ": [Hiragana(character="ぞ", romaji="zou", word="ぞう", image="zou.png")],
     "も": [
         Hiragana(character="も", romaji="mogura", word="もぐら", image="mogura.png")
     ],
