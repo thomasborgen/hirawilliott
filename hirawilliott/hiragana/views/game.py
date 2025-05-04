@@ -74,7 +74,7 @@ def render_game_partial(
             class_="hidden",
             autoplay="true",
         ),
-        class_="h-full w-full grid grid-cols-2 grid-rows-2 gap-2 pb-4",
+        class_="h-full w-full grid grid-cols-2 grid-rows-2 gap-3 p-3",
     )
 
 
