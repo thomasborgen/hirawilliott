@@ -25,6 +25,7 @@ db = {
     ],
     "え": [Hiragana(character="え", romaji="ebi", word="蝦", image="ebi.png")],
     "お": [Hiragana(character="お", romaji="ookami", word="狼", image="ookami.png")],
+    # か行
     "か": [Hiragana(character="か", romaji="kaba", word="カバ", image="kaba.png")],
     "き": [Hiragana(character="き", romaji="kirin", word="麒麟", image="kirin.png")],
     "く": [
@@ -54,6 +55,40 @@ db = {
         Hiragana(character="そ", romaji="soujiki", word="そうじき", image="soujiki.png")
     ],
     "ぞ": [Hiragana(character="ぞ", romaji="zou", word="ぞう", image="zou.png")],
+    # た行
+    "た": [
+        Hiragana(character="た", romaji="tanuki", word="たぬき", image="tanuki.png")
+    ],
+    "ち": [Hiragana(character="ち", romaji="chou", word="蝶", image="chou.png")],
+    "つ": [
+        Hiragana(character="つ", romaji="tsubame", word="つばめ", image="tsubame.png")
+    ],
+    "て": [
+        Hiragana(
+            character="て",
+            romaji="tentoumushi",
+            word="てんとうむし",
+            image="tentoumushi.png",
+        )
+    ],
+    "と": [
+        Hiragana(character="と", romaji="tonakai", word="となかい", image="tonakai.png")
+    ],
+    # な行
+    "な": [
+        Hiragana(
+            character="な", romaji="namekuji", word="なめくじ", image="namekuji.png"
+        )
+    ],
+    "に": [
+        Hiragana(
+            character="に", romaji="niwatori", word="にわとり", image="niwatori.png"
+        )
+    ],
+    "ぬ": [Hiragana(character="ぬ", romaji="nuu", word="ぬー", image="nuu.png")],
+    "ね": [Hiragana(character="ね", romaji="neko", word="ねこ", image="neko.png")],
+    "の": [Hiragana(character="の", romaji="nomi", word="のみ", image="nomi.png")],
+    # は行
     "も": [
         Hiragana(character="も", romaji="mogura", word="もぐら", image="mogura.png")
     ],
@@ -79,8 +114,5 @@ db = {
     ],
     "ら": [
         Hiragana(character="ら", romaji="rakuda", word="らくだ", image="rakuda.png")
-    ],
-    "と": [
-        Hiragana(character="と", romaji="tonakai", word="となかい", image="tonakai.png")
     ],
 }
