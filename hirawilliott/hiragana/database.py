@@ -168,13 +168,17 @@ db = {
     ],
     "ち": [
         Hiragana(
-            character="ち", word="", romaji="chou", hiragana="蝶", image="chou.png"
+            character="ち",
+            word="蝶",
+            romaji="chou",
+            hiragana="ちょう",
+            image="chou.png",
         )
     ],
     "つ": [
         Hiragana(
             character="つ",
-            word="",
+            word="燕",
             romaji="tsubame",
             hiragana="つばめ",
             image="tsubame.png",
@@ -183,7 +187,7 @@ db = {
     "て": [
         Hiragana(
             character="て",
-            word="",
+            word="瓢虫",
             romaji="tentoumushi",
             hiragana="てんとうむし",
             image="tentoumushi.png",
@@ -192,7 +196,7 @@ db = {
     "と": [
         Hiragana(
             character="と",
-            word="",
+            word="トナカイ",
             romaji="tonakai",
             hiragana="となかい",
             image="tonakai.png",
@@ -245,7 +249,7 @@ db = {
     "ご": [
         Hiragana(
             character="こ",
-            word="",
+            word="ゴリラ",
             romaji="gorira",
             hiragana="ごりら",
             image="gorira.png",

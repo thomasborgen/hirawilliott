@@ -72,10 +72,10 @@ def body() -> Body:
         Main(
             id="main",
             slot="main",
-            class_="h-full w-full flex-grow overflow-y-scroll",
+            class_="h-full w-full overflow-hidden",
         ),
         Div(id="toast_container", class_="toast toast-start toast-middle"),
         hx_indicator="#indicator",
         hx_history="false",
-        class_="h-full w-full",
+        class_="h-screen w-screen",
     )

@@ -51,9 +51,9 @@ def render_index_partial() -> Element:
             hx_get="/hiragana/game",
             hx_push_url="true",
             hx_target="#main",
-            class_="width-screen flex flex-col gap-2 p-4",
+            class_="flex flex-col gap-2 p-4",
         ),
-        class_="min-h-screen width-screen",
+        class_="min-h-full w-full",
     )
 
 
