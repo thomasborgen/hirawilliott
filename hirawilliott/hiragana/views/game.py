@@ -14,8 +14,9 @@ def _choice_renderer(hiragana: Hiragana, correct: bool = False) -> Element:
     audio = None
 
     if not correct:
+        ssml = f'<say-as interpret-as="characters">{hiragana.character}</say-as><break strength="strong"/>{hiragana.word}'
         audio = Audio(
-            src=f'/speak?text={hiragana.character}<break strength="strong"/>{hiragana.word}',
+            src=f"/speak?text={ssml}",
             class_="hidden",
             id=f"audio_{hiragana.romaji}",
         )
@@ -62,7 +63,9 @@ def render_game_partial(
 
     target_hiragana = [a_hiragana, b_hiragana, c_hiragana, d_hiragana][target]
 
-    speech = f'{target_hiragana.character}<break strength="strong"/>. {target_hiragana.character}<break time="1000ms"/>{target_hiragana.word}'
+    character = f'<say-as interpret-as="characters">{target_hiragana.character}</say-as><break strength="strong"/><say-as interpret-as="characters">{target_hiragana.character}</say-as>'
+
+    speech = f'{character}<break time="1000ms"/>{target_hiragana.word}'
 
     return Div(
         _choice_renderer(a_hiragana, correct=target == 0),

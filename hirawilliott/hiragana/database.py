@@ -237,6 +237,88 @@ db = {
         )
     ],
     # は行
+    "は": [
+        Hiragana(
+            character="は",
+            word="針鼠",
+            romaji="harinezumi",
+            hiragana="はりねずみ",
+            image="harinezumi.png",
+        )
+    ],
+    "ひ": [
+        Hiragana(
+            character="ひ",
+            word="羊",
+            romaji="hitsuji",
+            hiragana="ひつじ",
+            image="hitsuji.png",
+        )
+    ],
+    "ふ": [
+        Hiragana(
+            character="ふ",
+            word="梟",
+            romaji="fukurou",
+            hiragana="ふくろう",
+            image="fukurou.png",
+        )
+    ],
+    "へ": [
+        Hiragana(
+            character="へ",
+            word="蛇",
+            romaji="hebi",
+            hiragana="へび",
+            image="hebi.png",
+        )
+    ],
+    "ほ": [
+        Hiragana(
+            character="ほ",
+            word="螢",
+            romaji="hotaru",
+            hiragana="ほたる",
+            image="hotaru.png",
+        )
+    ],
+    # ま行
+    "ま": [
+        Hiragana(
+            character="ま",
+            word="マグロ",
+            romaji="maguro",
+            hiragana="まぐろ",
+            image="maguro.png",
+        )
+    ],
+    "み": [
+        Hiragana(
+            character="み",
+            word="ミミズ",
+            romaji="mimizu",
+            hiragana="みみず",
+            image="mimizu.png",
+        )
+    ],
+    "む": [
+        Hiragana(
+            character="む",
+            word="ムカデ",
+            romaji="mukade",
+            hiragana="むかで",
+            image="mukade.png",
+        )
+    ],
+    "め": [
+        Hiragana(
+            character="め",
+            word="メダカ",
+            romaji="medaka",
+            hiragana="めだか",
+            image="medaka.png",
+        )
+    ],
     "も": [
         Hiragana(
             character="も",
@@ -267,24 +349,6 @@ db = {
             romaji="ressaapanda",
             hiragana="れっさーぱんだ",
             image="ressaapanda.png",
-        )
-    ],
-    "は": [
-        Hiragana(
-            character="は",
-            word="",
-            romaji="hamsutaa",
-            hiragana="はむすたー",
-            image="hamusutaa.png",
-        )
-    ],
-    "ひ": [
-        Hiragana(
-            character="ひ",
-            word="",
-            romaji="hitsuji",
-            hiragana="ひつじ",
-            image="hitsuji.png",
         )
     ],
     "ら": [
