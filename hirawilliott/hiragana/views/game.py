@@ -1,8 +1,7 @@
 import random
 from typing import Annotated
 from fastapi import Depends
-from hypermedia import B, H2, Audio, Div, Element, Figure, Image, Title
-import urllib
+from hypermedia import H2, Audio, Div, Element, Figure, Image, Title
 
 from hirawilliott.components import base
 from hirawilliott.hiragana.dependencies import get_characters
@@ -50,28 +49,22 @@ def render_game_partial(
 ) -> Element:
     """Render only game form."""
 
-    a = characters.pop(random.randint(0, len(characters) - 1))
-    a_hiragana = db.get(a)[0]
-    b = characters.pop(random.randint(0, len(characters) - 1))
-    b_hiragana = db.get(b)[0]
-    c = characters.pop(random.randint(0, len(characters) - 1))
-    c_hiragana = db.get(c)[0]
-    d = characters.pop(random.randint(0, len(characters) - 1))
-    d_hiragana = db.get(d)[0]
+    num_choices = min(4, len(characters))
+    random.shuffle(characters)
+    choices = characters[:num_choices]
 
-    target = random.randint(0, 3)
-
-    target_hiragana = [a_hiragana, b_hiragana, c_hiragana, d_hiragana][target]
+    target_index = random.randint(0, num_choices - 1)
+    target_hiragana = db.get(choices[target_index])[0]
 
     character = f'<say-as interpret-as="characters">{target_hiragana.character}</say-as><break strength="strong"/><say-as interpret-as="characters">{target_hiragana.character}</say-as>'
 
     speech = f'{character}<break time="1000ms"/>{target_hiragana.word}'
 
     return Div(
-        _choice_renderer(a_hiragana, correct=target == 0),
-        _choice_renderer(b_hiragana, correct=target == 1),
-        _choice_renderer(c_hiragana, correct=target == 2),
-        _choice_renderer(d_hiragana, correct=target == 3),
+        *[
+            _choice_renderer(db.get(hiragana)[0], correct=i == target_index)
+            for i, hiragana in enumerate(choices)
+        ],
         Audio(
             src=f"/speak?text={speech}",
             class_="hidden",

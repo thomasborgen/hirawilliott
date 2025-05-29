@@ -328,6 +328,106 @@ db = {
             image="mogura.png",
         )
     ],
+    # や行
+    "や": [
+        Hiragana(
+            character="や",
+            word="ヤモリ",
+            romaji="yamori",
+            hiragana="やもり",
+            image="yamori.png",
+        )
+    ],
+    "ゆ": [
+        Hiragana(
+            character="ゆ",
+            word="雪豹",
+            romaji="yukihyou",
+            hiragana="ゆきひょう",
+            image="yukihyou.png",
+        )
+    ],
+    "よ": [
+        Hiragana(
+            character="よ",
+            word="幼虫",
+            romaji="youchuu",
+            hiragana="ようちゅう",
+            image="youchuu.png",
+        )
+    ],
+    "ら": [
+        Hiragana(
+            character="ら",
+            word="駱駝",
+            romaji="rakuda",
+            hiragana="らくだ",
+            image="rakuda.png",
+        )
+    ],
+    "り": [
+        Hiragana(
+            character="り",
+            word="栗鼠",
+            romaji="risu",
+            hiragana="りす",
+            image="risu.png",
+        )
+    ],
+    "る": [
+        Hiragana(
+            character="る",
+            word="ルバーブ",
+            romaji="rubaabu",
+            hiragana="ルバーぶ",
+            image="rubaabu.png",
+        )
+    ],
+    "れ": [
+        Hiragana(
+            character="れ",
+            word="レッサーパンダ",
+            romaji="ressaapanda",
+            hiragana="れっさーぱんだ",
+            image="ressaapanda.png",
+        )
+    ],
+    "ろ": [
+        Hiragana(
+            character="ろ",
+            word="驢馬",
+            romaji="roba",
+            hiragana="ろば",
+            image="roba.png",
+        )
+    ],
+    "わ": [
+        Hiragana(
+            character="わ",
+            word="ワニ",
+            romaji="wani",
+            hiragana="わに",
+            image="wani.png",
+        ),
+    ],
+    "を": [
+        Hiragana(
+            character="を",
+            word='猫<break strength="weak"/>を>飼う',
+            romaji="neko wo kau",
+            hiragana="ねこをかう",
+            image="neko_wo_kau.png",
+        ),
+    ],
+    "ん": [
+        Hiragana(
+            character="ん",
+            word="ライオン",
+            romaji="raion",
+            hiragana="らいおん",
+            image="raion.png",
+        ),
+    ],
     "ご": [
         Hiragana(
             character="こ",
@@ -336,28 +436,5 @@ db = {
             hiragana="ごりら",
             image="gorira.png",
         ),
-    ],
-    "り": [
-        Hiragana(
-            character="り", word="", romaji="risu", hiragana="りす", image="risu.png"
-        )
-    ],
-    "れ": [
-        Hiragana(
-            character="れ",
-            word="",
-            romaji="ressaapanda",
-            hiragana="れっさーぱんだ",
-            image="ressaapanda.png",
-        )
-    ],
-    "ら": [
-        Hiragana(
-            character="ら",
-            word="",
-            romaji="rakuda",
-            hiragana="らくだ",
-            image="rakuda.png",
-        )
     ],
 }
