@@ -1,44 +1,54 @@
-FROM python:3.12-slim
+FROM python:3.14
 
-# Install uv.
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+ARG GCP_SERVICE_ACCOUNT_KEY_BASE64
 
-# Copy the application into the container.
-COPY . /app
+ENV PYTHONUNBUFFERED=1
 
-# Install the application dependencies.
-WORKDIR /app
-RUN uv sync --frozen --no-cache
+WORKDIR /app/
 
-EXPOSE 8080
-# Run the application.
-CMD ["/app/.venv/bin/fastapi", "run", "hirawilliott/main.py", "--port", "8080", "--host", "0.0.0.0"]
+# Install uv
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
+COPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv
 
-# FROM python:3.12
+# Place executables in the environment at the front of the path
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
+ENV PATH="/app/.venv/bin:$PATH"
 
-# ENV PYTHONUNBUFFERED=1
+# Compile bytecode
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
+ENV UV_COMPILE_BYTECODE=1
 
-# WORKDIR /app/
+# uv Cache
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#caching
+ENV UV_LINK_MODE=copy
 
-# # Install uv
-# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
-# COPY --from=ghcr.io/astral-sh/uv:0.4.15 /uv /bin/uv
+# Install dependencies
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project
 
-# # Place executables in the environment at the front of the path
-# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
-# ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH=/app
 
-# # Compile bytecode
-# # Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
-# ENV UV_COMPILE_BYTECODE=1
+# COPY ./scripts /app/scripts
+# Copy alembic migrations and files
+# COPY alembic.ini /app/
+# COPY ./alembic /app/alembic
 
+COPY ./pyproject.toml ./uv.lock /app/ 
+# add ./alembic.ini to above when using alembic
 
-# COPY ./pyproject.toml ./uv.lock /app/
+# move server into the app folder
+# COPY ./app /app/app
+COPY ./hirawilliott /app/hirawilliott
 
-# ENV PYTHONPATH=/app
+# Add service account key from env var
+RUN echo -n ${GCP_SERVICE_ACCOUNT_KEY_BASE64} | base64 --decode >> /app/key.json
 
-# COPY ./hirawilliott /app/hirawilliott
+# Sync the project
+# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync
 
-# RUN uv sync
-
-# CMD ["uv", "run", "fastapi", "run", "--workers", "1" "hirawilliott/main.py"]
+CMD ["fastapi", "run", "--workers", "2", "hirawilliott/main.py"]

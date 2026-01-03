@@ -9,10 +9,7 @@ from hirawilliott.speak.router import router as speak_router
 
 from hirawilliott.views.index import render_index, render_index_partial
 
-app = FastAPI(
-    title="Hirawilliott.",
-    description="Hirawilliott. Hiragana practice for kids",
-)
+app = FastAPI(title="Hirawilliott.", description="Hirawilliott.")
 
 
 @app.middleware("http")
@@ -39,6 +36,14 @@ async def index(
 ) -> None:
     """Return the index page."""
     pass
+
+
+@app.get("/ping", response_class=HTMLResponse)
+async def ping(
+    request: Request,
+) -> None:
+    """Ping."""
+    "ok"
 
 
 app.include_router(hiragana_router)

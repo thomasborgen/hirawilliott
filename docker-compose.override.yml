@@ -1,0 +1,21 @@
+services:
+
+  hirawilliott:
+    restart: "no"
+    build:
+      context: .
+    command:
+      - fastapi
+      - run
+      - --reload
+      - "hirawilliott/main.py"
+    develop:
+      watch:
+        - path: ./hirawilliott
+          action: sync
+          target: /app/hirawilliott
+          ignore:
+            - .venv
+        - path: ./pyproject.toml
+          action: rebuild
+

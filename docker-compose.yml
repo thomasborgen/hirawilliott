@@ -1,0 +1,56 @@
+volumes:
+  hirawilliott-db-data:
+
+networks:
+  public-traefik:
+    external: true
+  local-adminer:
+    external: true
+  hirawilliott:
+
+
+services:
+  hirawilliott:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        GCP_SERVICE_ACCOUNT_KEY_BASE64: ${GCP_SERVICE_ACCOUNT_KEY_BASE64?Variable not set}
+    restart: always
+    networks:
+      - public-traefik
+      - hirawilliott
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - DOMAIN=${DOMAIN?Variable not set}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - PROJECT_NAME=${PROJECT_NAME?Variable not set}
+      - CORS_ORIGINS=${CORS_ORIGINS}
+      - GOOGLE_APPLICATION_CREDENTIALS=key.json
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ping"]
+      interval: 100s
+      retries: 10
+      start_period: 30s
+      start_interval: 1s
+      timeout: 10s
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=public-traefik
+      - traefik.constraint-label=public-traefik
+
+      - traefik.http.services.${PROJECT_NAME}.loadbalancer.server.port=8000
+
+      - traefik.http.routers.${PROJECT_NAME}-http.rule=Host(`${PROJECT_NAME}.${DOMAIN}`)
+      - traefik.http.routers.${PROJECT_NAME}-http.entrypoints=http
+
+      - traefik.http.routers.${PROJECT_NAME}-https.rule=Host(`${PROJECT_NAME}.${DOMAIN}`)
+      - traefik.http.routers.${PROJECT_NAME}-https.entrypoints=https
+      - traefik.http.routers.${PROJECT_NAME}-https.tls=true
+      - traefik.http.routers.${PROJECT_NAME}-https.tls.certresolver=le
+
+      # Enable redirection for HTTP and HTTPS
+      - traefik.http.routers.${PROJECT_NAME}-http.middlewares=https-redirect
